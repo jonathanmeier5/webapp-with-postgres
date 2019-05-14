@@ -1,18 +1,6 @@
-FROM ubuntu:16.04
+FROM jpetazzo/dind
 
 RUN apt-get update && apt-get install -y curl vim
-
-ENV DOCKERVERSION="17.09.1-ce"
-ENV DOCKER_SHA="42ccda2f86743abc90d3601a9bf970937a93c448"
-RUN curl -fsSLO https://download.docker.com/linux/static/stable/x86_64/docker-${DOCKERVERSION}.tgz \
- && echo "$DOCKER_SHA docker-${DOCKERVERSION}.tgz" | sha1sum -c - \
- && tar xzvf docker-${DOCKERVERSION}.tgz --strip 1 \
-    -C /usr/local/bin docker/docker \
-&& rm docker-${DOCKERVERSION}.tgz
-
-# ARG DOCKER_GID=999
-#RUN groupadd -for -g ${DOCKER_GID} docker \
-#&& usermod -a -G docker,staff ${user}
 
 # install docker-compose
 RUN curl -L "https://github.com/docker/compose/releases/download/1.23.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
