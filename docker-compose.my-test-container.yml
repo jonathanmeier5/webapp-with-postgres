@@ -7,3 +7,5 @@ services:
       dockerfile: ./Dockerfile.test-environment 
     volumes:
       - ./:/opt/project
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true
