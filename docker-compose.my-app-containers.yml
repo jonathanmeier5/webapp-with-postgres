@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  postgres:
+    image: postgres
+    restart: always
+    networks:
+      - talk_on_this
+    environment:
+      - POSTGRES_DB
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+
+  webapp:
+    image: python:3.7-stretch
+    networks:
+      - talk_on_this
+
+networks:
+  talk_on_this:
+
